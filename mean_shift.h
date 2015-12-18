@@ -338,7 +338,8 @@ public:
 	}
 
 	/** Set the condition to check mode belonging
-	*	It is also used to judge if a mean shift result belongs to an existing mode.
+	*	It is used to judge if a mean shift result belongs to an existing mode or a new mode should be created.
+	*   The default value is set to 1
 	*/
 	void set_mode_bound(const T _mb)
 	{
