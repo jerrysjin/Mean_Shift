@@ -119,7 +119,7 @@ namespace sml
 	template<typename T1, typename T2 = double>
 	const T2 sqr_dist(T1* _vec1, T1* _vec2, const size_t _k)
 	{
-		T sqr_dist(0);
+		T2 sqr_dist(0);
 		for (size_t i = 0; i < _k; ++i)
 		{
 			sqr_dist += (_vec1[i] - _vec2[i]) * (_vec1[i] - _vec2[i]);

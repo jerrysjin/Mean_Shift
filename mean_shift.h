@@ -19,10 +19,15 @@
 *   3. A blog introducing mean shift
 *   Link: http://bit.ly/1NSW5km
 *
-*	Version 0.20151216, not optimized.
-*
 *   Code developed by Shuo Jin at Dept. of MAE, CUHK, Hong Kong
 *   Email: jerry.shuojin@gmail.com. All rights reserved.
+*
+*   Any bug report or suggestion is welcome!
+*
+*   Current Version - 0.20160106
+*
+*   Changelog:
+*	0.20160106 - fix some minor compling bugs
 */
 //////////////////////////////////////////////////////////////////////////
 
@@ -37,12 +42,12 @@
 #include <ctime>
 
 /** Configure the path of ANN library here */
-#include "..\ANN\ANN.h"
+#include <ANN/ANN.h>
 
 /** Some information will be output on console if this macro is defined
 *   Uncomment this macro to disable this feature
 */
-#define __MEAN_SHIFT_ENABLE_CONSOLE_OUTPUT__
+//#define __MEAN_SHIFT_ENABLE_CONSOLE_OUTPUT__
 
 /** It will use KNN to search K neighbors in computing mean shift vector if this macro is defined 
 *   Uncomment this macro to disable this feature
@@ -63,7 +68,7 @@ public:
 		for (size_t i = 0; i < D; ++i) msv_data[i] = std::numeric_limits<T>::lowest();
 	}
 	
-	/** Create a vector with a initial value _v for all elements */
+	/** Create a vector with an initial value _v for all elements */
 	ms_vec(const T _v)
 	{
 		for (size_t i = 0; i < D; ++i) msv_data[i] = _v;
@@ -86,6 +91,12 @@ public:
 	void reset(const T _v = 0)
 	{
 		for (size_t i = 0; i < D; ++i) msv_data[i] = _v;
+	}
+
+	/** Init from a raw vector */
+	void init(const T* _data)
+	{
+		for (size_t i = 0; i < D; ++i) msv_data[i] = _data[i];
 	}
 
 	/** Operator [] */
@@ -330,7 +341,8 @@ public:
 	}
 
 	/** Set the condition to check termination
-	*   This value is used to determine the end of a mean shift process for a vector. 
+	*   This value is used to determine the end of a mean shift process for a vector.
+	*   The default value is set to 0.001
 	*/
 	void set_epsilon(const T _e)
 	{
