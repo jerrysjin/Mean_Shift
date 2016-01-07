@@ -47,7 +47,7 @@
 /** Some information will be output on console if this macro is defined
 *   Uncomment this macro to disable this feature
 */
-//#define __MEAN_SHIFT_ENABLE_CONSOLE_OUTPUT__
+#define __MEAN_SHIFT_ENABLE_CONSOLE_OUTPUT__
 
 /** It will use KNN to search K neighbors in computing mean shift vector if this macro is defined 
 *   Uncomment this macro to disable this feature
